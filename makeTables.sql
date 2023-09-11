@@ -19,7 +19,7 @@ CREATE TABLE recruiter (
     lastname VARCHAR,
     firstname VARCHAR,
     email VARCHAR,
-    password char,
+    password VARCHAR,
     PRIMARY KEY(id)
 );
 
