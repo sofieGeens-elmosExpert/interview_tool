@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS interview_has_questions;
 DROP TABLE IF EXISTS interview;
 DROP TABLE IF EXISTS example_answer;
 DROP TABLE IF EXISTS question;
-DROP TABLE IF EXISTS recruiter;
+DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS candidate;
 
 CREATE TABLE candidate (
@@ -14,12 +14,13 @@ CREATE TABLE candidate (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE recruiter (
+CREATE TABLE person (
     id int,
     lastname VARCHAR,
     firstname VARCHAR,
     email VARCHAR,
     password VARCHAR,
+    role char,
     PRIMARY KEY(id)
 );
 
