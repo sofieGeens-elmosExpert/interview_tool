@@ -44,13 +44,13 @@ CREATE TABLE example_answer (
 
 CREATE TABLE interview (
     id int,
-    recruiter_id int,
+    person_id int,
     candidate_id int,
     day date,
     startime time,
     PRIMARY KEY(id),
     CONSTRAINT fk_interview_candidate FOREIGN KEY (candidate_id) REFERENCES candidate(id),
-    CONSTRAINT fk_interview_recruiter FOREIGN KEY (recruiter_id) REFERENCES recruiter(id)
+    CONSTRAINT fk_interview_person FOREIGN KEY (person_id) REFERENCES person(id)
 );
 
 CREATE TABLE interview_has_questions (
