@@ -7,19 +7,19 @@ DROP TABLE IF EXISTS candidate;
 
 CREATE TABLE candidate (
     id int,
-    lastname VARCHAR,
-    firstname VARCHAR,
-    email VARCHAR,
+    lastname VARCHAR(20),
+    firstname VARCHAR(20),
+    email VARCHAR(40),
     role char,
     PRIMARY KEY(id)
 );
 
 CREATE TABLE person (
     id int,
-    lastname VARCHAR,
-    firstname VARCHAR,
-    email VARCHAR,
-    password VARCHAR,
+    lastname VARCHAR(20),
+    firstname VARCHAR(20),
+    email VARCHAR(40),
+    password VARCHAR(50),
     role char,
     PRIMARY KEY(id)
 );
@@ -30,14 +30,14 @@ CREATE TABLE question (
     question_type char,
     answer_type char,
     role char,
-    question VARCHAR,
+    question VARCHAR(255),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE example_answer (
     id int,
     question_id int,
-    answer VARCHAR,
+    answer VARCHAR(255),
     PRIMARY KEY(id),
     CONSTRAINT fk_question_answer FOREIGN KEY (question_id) REFERENCES question(id)
 );
@@ -57,7 +57,7 @@ CREATE TABLE interview_has_questions (
     id int,
     interview_id int,
     question_id int,
-    rating VARCHAR,
+    rating VARCHAR(255),
     PRIMARY KEY(id),
     CONSTRAINT fk_has_question_interview FOREIGN KEY (interview_id) REFERENCES interview(id),
     CONSTRAINT fk_has_question_question FOREIGN KEY (question_id) REFERENCES question(id)

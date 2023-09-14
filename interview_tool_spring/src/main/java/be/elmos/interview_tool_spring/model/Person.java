@@ -4,24 +4,24 @@ package be.elmos.interview_tool_spring.model;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
-@Entity
-@Table(name = "person")
+@MappedSuperclass
 public abstract class Person implements Comparable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
-
+    @Column(name = "lastname")
     private String lastName;
+    @Column(name = "firstname")
     private String firstName;
+    @Column(name = "email")
     private String email;
-    private String password;
+    @Column(name = "role")
     private Type role;
 
     public Person(String firstName, String lastName, String email, String password, Type role) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setPassword(password);
         setRole(role);
     }
 
@@ -57,13 +57,6 @@ public abstract class Person implements Comparable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Type getRole() {
         return role;
