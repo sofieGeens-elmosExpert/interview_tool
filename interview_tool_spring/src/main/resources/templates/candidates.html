@@ -6,7 +6,7 @@
 </head>
 <body>
     <main>
-        <table class="table col-md-3 ml-3">
+        <table class="table">
             <thead>
             <tr>
                 <th>First Name</th>
@@ -21,6 +21,8 @@
                 <td th:text="${candidate.getLastname()}"></td>
                 <td th:text="${candidate.getEmail()}"></td>
                 <td th:text="${candidate.getRole()}"></td>
+                <td><a th:href="@{/candidates/edit/{id}(id=${candidate.getID()})}" class="btn">Edit</a></td>
+                <td><a th:href="@{/candidates/delete/{id}(id=${candidate.getID()})}" class="btn">Delete</a></td>
             </tr>
             </tbody>
         </table>

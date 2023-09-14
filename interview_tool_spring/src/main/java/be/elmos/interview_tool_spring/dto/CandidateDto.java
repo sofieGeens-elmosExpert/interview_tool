@@ -14,6 +14,7 @@ public abstract class CandidateDto {
     private String email;
     private String role;
 
+
     public CandidateDto(String ln, String fn, String mail, Type r) {
         lastname = ln;
         firstname = fn;

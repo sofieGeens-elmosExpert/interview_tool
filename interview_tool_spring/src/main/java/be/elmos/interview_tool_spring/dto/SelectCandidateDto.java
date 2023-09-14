@@ -7,7 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class SelectCandidateDto extends CandidateDto {
 
-    public SelectCandidateDto(String ln, String fn, String mail, Type r){
+    private long id;
+
+    public SelectCandidateDto(String ln, String fn, String mail,long id, Type r){
         super(ln,fn,mail,r);
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
