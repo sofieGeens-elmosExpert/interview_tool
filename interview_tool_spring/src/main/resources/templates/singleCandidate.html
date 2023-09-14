@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate Info</title>
+</head>
+<body>
+    <main class = "content">
+        <div class="info-group">
+            <label>First name</label>
+            <span th:text="${candidate.getFirstname()}"></span>
+        </div>
+        <div class="info-group">
+            <label>Last name</label>
+            <span th:text="${candidate.getLastname()}"></span>
+        </div>
+        <div class="info-group">
+            <label>E-mail</label>
+            <span th:text="${candidate.getEmail()}"></span>
+        </div>
+        <div class="info-group">
+            <label>Role</label>
+            <span th:text="${candidate.getRole()}"></span>
+        </div>
+    </main>
+</body>
+</html>

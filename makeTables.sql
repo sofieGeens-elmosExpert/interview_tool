@@ -11,6 +11,7 @@ CREATE TABLE candidate (
     firstname VARCHAR(20),
     email VARCHAR(40),
     role char,
+    active BIT(1),
     PRIMARY KEY(id)
 );
 
@@ -21,6 +22,7 @@ CREATE TABLE person (
     email VARCHAR(40),
     password VARCHAR(50),
     role char,
+    active BIT(1),
     PRIMARY KEY(id)
 );
 
@@ -62,3 +64,5 @@ CREATE TABLE interview_has_questions (
     CONSTRAINT fk_has_question_interview FOREIGN KEY (interview_id) REFERENCES interview(id),
     CONSTRAINT fk_has_question_question FOREIGN KEY (question_id) REFERENCES question(id)
 );
+
+INSERT INTO interview_tool.dbo.candidate(id, lastname, firstname, email, role) VALUES (1,'John', 'Doe','john@doe.com','j');

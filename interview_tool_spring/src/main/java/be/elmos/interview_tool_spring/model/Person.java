@@ -6,8 +6,9 @@ import org.springframework.data.annotation.Id;
 
 @MappedSuperclass
 public abstract class Person implements Comparable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long ID;
     @Column(name = "lastname")
     private String lastName;
@@ -17,13 +18,17 @@ public abstract class Person implements Comparable {
     private String email;
     @Column(name = "role")
     private Type role;
+    @Column(name = "active")
+    private Boolean active;
 
-    public Person(String firstName, String lastName, String email, String password, Type role) {
-        setFirstName(firstName);
+    public Person(String lastName, String firstName, String email, Type role) {
         setLastName(lastName);
+        setFirstName(firstName);
         setEmail(email);
         setRole(role);
     }
+
+    public Person(){}
 
     public Long getID() {
         return ID;
@@ -64,6 +69,14 @@ public abstract class Person implements Comparable {
 
     public void setRole(Type role) {
         this.role = role;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override

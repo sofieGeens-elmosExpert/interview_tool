@@ -7,5 +7,10 @@ import java.util.List;
 
 public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
     List<Candidate> findAll();
+
+    Candidate findById(int id);
+
+    List<Candidate> findByActive(boolean bool);
+    // todo Long instead of Integer?
 }
 

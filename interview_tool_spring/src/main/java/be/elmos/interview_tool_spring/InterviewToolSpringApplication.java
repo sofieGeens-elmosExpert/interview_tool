@@ -26,11 +26,13 @@ public class InterviewToolSpringApplication {
 	@Bean
 	public CommandLineRunner demoInterviewTool(PersonRepository personRepository) {
 		return (args) -> {
+			/*
 			String sql = "SELECT * FROM interview_tool.dbo.person;";
 			System.out.println("\n\nTRY QUERY\n\n");
 			List<Person> persons = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Person.class));
 			System.out.println("\n" + sql + "\n");
 			persons.forEach(System.out :: println);
+			*/
 			generatePerson(personRepository);
 		};
 	}

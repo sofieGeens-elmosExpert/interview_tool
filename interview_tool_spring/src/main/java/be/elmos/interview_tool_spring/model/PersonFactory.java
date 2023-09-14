@@ -6,7 +6,7 @@ public class PersonFactory {
             case JUNIOR:
             case MEDIOR:
             case SENIOR:
-                return new Candidate(lastName, firstName, email, password, type);
+                return new Candidate(lastName, firstName, email, type);
             case RECRUITER:
                 return new Recruiter(lastName, firstName, email, password, type);
             case MANAGER:

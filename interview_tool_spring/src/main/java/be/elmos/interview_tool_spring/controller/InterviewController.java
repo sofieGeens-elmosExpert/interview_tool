@@ -12,13 +12,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/interview")
 public class InterviewController {
-
+    /*
     @GetMapping("/start")
     public String startInterview(CandidateDto candidateDto){
         List<Candidate> candidates = candidateDto.getAllCandidates();
         //TODO: display list of candidates in new-interview.html
         return "new-interview";
     }
+    */
 
     @PostMapping("/start")
     public String candidateChosen(){
