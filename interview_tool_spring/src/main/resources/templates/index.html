@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en", xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+</head>
+<body>
+<main>
+    <header class="header">
+        <h1 class="h1 text-center">Log In</h1>
+    </header>
+    <div class="content">
+        <form class="form" novalidate>
+            <div class="form__group">
+                <label for="email">e-mail</label>
+                <input class="form__controll" type="email" name="email" id="email" placeholder="John.Doe@elmos.com" title="last name" required/>
+            </div>
+            <div class="form__group">
+                <label for="password">Telephone number</label>
+                <input class="form__controll" type="password" name="password" id="password" placeholder="Enter your password" title="password" required/>
+            </div>
+            <div class = "allerts" id="allerts"></div>
+            <button type="submit" class="button" id="submit">Log in</button>
+        </form>
+    </div>
+    <footer class="text-center">
+    </footer>
+</main>
+</body>
+</html>
