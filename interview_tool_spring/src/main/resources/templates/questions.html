@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Questions overview</title>
+</head>
+<body>
+<main>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Question</th>
+      <th>Question type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question : ${questions}">
+      <td th:text="${question.getQuestion()}"></td>
+      <td th:text="${question.getQuestionType()}"></td>
+      <td><a th:href="@{/questions/edit/{id}(id=${question.getId()})}" class="btn">Edit</a></td>
+      <td><a th:href="@{/questions/delete/{id}(id=${question.getId()})}" class="btn">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

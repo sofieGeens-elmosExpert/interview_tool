@@ -8,7 +8,7 @@ public class Answer {
     long id;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Column(name = "question_id")
-    Question questionId;
+    Question question;
     @Column(name = "answer")
     String answer;
     @Column(name = "active")
@@ -18,7 +18,7 @@ public class Answer {
     }
 
     public Answer(Question questionId, String answer, Boolean isActive) {
-        this.questionId = questionId;
+        this.question = questionId;
         this.answer = answer;
         this.isActive = isActive;
     }
@@ -31,12 +31,12 @@ public class Answer {
         this.id = id;
     }
 
-    public Question getQuestionId() {
-        return questionId;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setQuestionId(Question questionId) {
-        this.questionId = questionId;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public String getAnswer() {
