@@ -1,6 +1,7 @@
 package be.elmos.interview_tool_spring.model;
 
 
+import be.elmos.interview_tool_spring.model.enums.PersonType;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
@@ -9,7 +10,7 @@ public abstract class Person implements Comparable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
     @Column(name = "lastname")
     private String lastName;
     @Column(name = "firstname")
@@ -17,11 +18,11 @@ public abstract class Person implements Comparable {
     @Column(name = "email")
     private String email;
     @Column(name = "role")
-    private Type role;
+    private PersonType role;
     @Column(name = "active")
     private Boolean active;
 
-    public Person(String lastName, String firstName, String email, Type role) {
+    public Person(String lastName, String firstName, String email, PersonType role) {
         setLastName(lastName);
         setFirstName(firstName);
         setEmail(email);
@@ -30,12 +31,12 @@ public abstract class Person implements Comparable {
 
     public Person(){}
 
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long ID) {
+        this.id = ID;
     }
 
     public String getLastName() {
@@ -63,11 +64,11 @@ public abstract class Person implements Comparable {
     }
 
 
-    public Type getRole() {
+    public PersonType getRole() {
         return role;
     }
 
-    public void setRole(Type role) {
+    public void setRole(PersonType role) {
         this.role = role;
     }
 
@@ -81,11 +82,11 @@ public abstract class Person implements Comparable {
 
     @Override
     public String toString() {
-        return String.format("Person[id=%d, firstName='%s', lastName='%s', email='%s', role='%s']", ID, firstName, lastName, email, role);
+        return String.format("Person[id=%d, firstName='%s', lastName='%s', email='%s', role='%s']", id, firstName, lastName, email, role);
     }
 
     @Override
     public int compareTo(Object person) {
-        return (int) (this.getID()- ((Person)person).getID());
+        return (int) (this.getId()- ((Person)person).getId());
     }
 }

@@ -6,34 +6,32 @@
 </head>
 <body>
   <main>
-    <form th:action="@{/candidates/update/{id}(id=${candidate.id})}" th:object="${candidate}" method="post">
-      <div class="row">
-        <div class="form-group">
-          <label for="street" class="col-form-label">First name</label>
-          <!-- TODO: find out what th:field does and use it for my case -->
-          <input type="text" th:field="*{street}" id="first-name" placeholder="street">
-        </div>
-        <div class="form-group">
-          <label for="number" class="col-form-label">Last name</label>
-          <input type="text" th:field="*{number}" class="form-control" id="last-name" placeholder="number">
-        </div>
-        <div class="form-group">
-          <label for="box" class="col-form-label">E-mail</label>
-          <input type="text" th:field="*{box}" class="form-control" id="email" placeholder="box">
-        </div>
-        <div class="form-group">
-          <label for="zip" class="col-form-label">Role</label>
-          <!-- TODO: make radiobutton/dropdown for role -->
-        </div>
-        <div class="row">
-        <div class="col-md-6 mt-5">
-          <input type="submit" class="btn btn-primary" value="Bewaar">
-        </div>
+    <form th:action="@{/candidates/update/{id}(id=${cand.id})}" th:object="${cand}" method="post" class="form" novalidate>
+      <div class="form-group">
+        <label for="first-name" class="label">First name</label>
+        <input type="text" th:field="*{firstname}" id="first-name" th:value="${cand.getFirstname()}" required>
       </div>
-      <p>
-        <a href="../addresses.html" th:href="@{/addresses}"><i class="fas fa-home" style="font-size:20px"></i> Terug</i></a>
-      </p>
+      <div class="form-group">
+        <label for="last-name" class="label">Last name</label>
+        <input type="text" th:field="*{lastname}"  id="last-name" th:value="${cand.getLastname()}" required>
+      </div>
+      <div class="form-group">
+        <label for="email" class="label">E-mail</label>
+        <input type="text" th:field="*{email}" class="email" id="email" th:value="${cand.getEmail()}" required>
+      </div>
+      <div class="form-group">
+        <label class="label">Role</label>
+        <input type="radio" id="junior" th:field="*{role}" th:value="junior" checked>
+        <label for="junior">Junior</label><br>
+        <input type="radio" id="medior" th:field="*{role}" th:value="medior">
+        <label for="medior">Medior</label><br>
+        <input type="radio" id="senior" th:field="*{role}" th:value="senior">
+        <label for="senior">Senior</label>
+      </div>
+      <div class = "allerts"></div>
+      <input type="submit" class="btn" id="submit" value="Save">
     </form>
   </main>
+  <script src="../javascript/validate-forms.js"></script>
 </body>
 </html>

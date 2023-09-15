@@ -1,12 +1,6 @@
 package be.elmos.interview_tool_spring.dto;
 
-import be.elmos.interview_tool_spring.model.Candidate;
-import be.elmos.interview_tool_spring.model.Type;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
+import be.elmos.interview_tool_spring.model.enums.PersonType;
 
 public abstract class CandidateDto {
     private String lastname;
@@ -14,16 +8,18 @@ public abstract class CandidateDto {
     private String email;
     private String role;
 
+    public CandidateDto() {
+    }
 
-    public CandidateDto(String ln, String fn, String mail, Type r) {
+    public CandidateDto(String ln, String fn, String mail, PersonType r) {
         lastname = ln;
         firstname = fn;
         email = mail;
-        if (r == Type.JUNIOR) {
+        if (r == PersonType.JUNIOR) {
             role = "junior";
-        } else if (r == Type.MEDIOR) {
+        } else if (r == PersonType.MEDIOR) {
             role = "medior";
-        } else if (r == Type.SENIOR) {
+        } else if (r == PersonType.SENIOR) {
             role = "senior";
         } else {
             role = "unknown";

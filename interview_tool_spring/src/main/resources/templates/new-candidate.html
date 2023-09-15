@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new candidate</title>
+</head>
+<body>
+<main>
+    <form th:action="@{/candidates/add}" th:object="${candidate}" method="post" class = "form" novalidate>
+        <div class="form-group">
+            <label for="first-name" class="label">First name</label>
+            <input type="text" th:field="*{firstname}" id="first-name" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+            <label for="last-name" class="label">Last name</label>
+            <input type="text" th:field="*{lastname}"  id="last-name" placeholder="Last name" required>
+        </div>
+        <div class="form-group">
+            <label for="email" class="label">E-mail</label>
+            <input type="text" th:field="*{email}" class="email" id="email" placeholder="E-mail" required>
+        </div>
+        <div class="form-group">
+            <label class="label">Role</label>
+            <input type="radio" id="junior" th:field="*{role}" th:value="junior" checked>
+            <label for="junior">Junior</label><br>
+            <input type="radio" id="medior" th:field="*{role}" th:value="medior">
+            <label for="medior">Medior</label><br>
+            <input type="radio" id="senior" th:field="*{role}" th:value="senior">
+            <label for="senior">Senior</label>
+        </div>
+        <div class = "allerts">
+            <!--either empty or tells that user already exists -->
+            <p>${exists}</p>
+        </div>
+        <input type="submit" class="btn" id="submit" value="Save">
+    </form>
+</main>
+<script src="../javascript/validate-forms.js"></script>
+</body>
+</html>

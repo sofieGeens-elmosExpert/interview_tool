@@ -21,8 +21,8 @@
                 <td th:text="${candidate.getLastname()}"></td>
                 <td th:text="${candidate.getEmail()}"></td>
                 <td th:text="${candidate.getRole()}"></td>
-                <td><a th:href="@{/candidates/edit/{id}(id=${candidate.getID()})}" class="btn">Edit</a></td>
-                <td><a th:href="@{/candidates/delete/{id}(id=${candidate.getID()})}" class="btn">Delete</a></td>
+                <td><a th:href="@{/candidates/edit/{id}(id=${candidate.getId()})}" class="btn">Edit</a></td>
+                <td><a th:href="@{/candidates/delete/{id}(id=${candidate.getId()})}" class="btn">Delete</a></td>
             </tr>
             </tbody>
         </table>

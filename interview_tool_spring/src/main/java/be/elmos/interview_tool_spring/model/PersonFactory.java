@@ -1,7 +1,9 @@
 package be.elmos.interview_tool_spring.model;
 
+import be.elmos.interview_tool_spring.model.enums.PersonType;
+
 public class PersonFactory {
-    public Person getPerson(final Type type, String lastName, String firstName, String email, String password) {
+    public Person getPerson(final PersonType type, String lastName, String firstName, String email, String password) {
         switch (type) {
             case JUNIOR:
             case MEDIOR:

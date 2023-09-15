@@ -33,6 +33,7 @@ CREATE TABLE question (
     answer_type char,
     role char,
     question VARCHAR(255),
+    active BIT(1),
     PRIMARY KEY(id)
 );
 
@@ -40,6 +41,7 @@ CREATE TABLE example_answer (
     id int,
     question_id int,
     answer VARCHAR(255),
+    active BIT(1),
     PRIMARY KEY(id),
     CONSTRAINT fk_question_answer FOREIGN KEY (question_id) REFERENCES question(id)
 );
@@ -65,4 +67,4 @@ CREATE TABLE interview_has_questions (
     CONSTRAINT fk_has_question_question FOREIGN KEY (question_id) REFERENCES question(id)
 );
 
-INSERT INTO interview_tool.dbo.candidate(id, lastname, firstname, email, role) VALUES (1,'John', 'Doe','john@doe.com','j');
+INSERT INTO interview_tool.dbo.candidate(id, lastname, firstname, email, role, active) VALUES (1,'John', 'Doe','john@doe.com','j',1);

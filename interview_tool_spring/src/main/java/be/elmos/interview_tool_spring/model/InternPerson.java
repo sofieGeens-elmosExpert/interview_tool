@@ -1,8 +1,8 @@
 package be.elmos.interview_tool_spring.model;
 
+import be.elmos.interview_tool_spring.model.enums.PersonType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,7 +20,7 @@ public class InternPerson extends Person {
         password=pw;
     }
 
-    public InternPerson(String lastName, String firstName, String email, String pw, Type role) {
+    public InternPerson(String lastName, String firstName, String email, String pw, PersonType role) {
         super(lastName, firstName, email, role);
         password = pw;
     }
