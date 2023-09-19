@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS example_answer;
 DROP TABLE IF EXISTS question;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS candidate;
+DROP TABLE IF EXISTS language;
 
 CREATE TABLE candidate (
     id int,
