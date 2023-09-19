@@ -34,7 +34,8 @@ CREATE TABLE question (
     role char,
     question VARCHAR(255),
     active BIT(1),
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    CONSTRAINT fk_question_language FOREIGN KEY (language_id) REFERENCES language(id),
 );
 
 CREATE TABLE example_answer (
@@ -67,4 +68,11 @@ CREATE TABLE interview_has_questions (
     CONSTRAINT fk_has_question_question FOREIGN KEY (question_id) REFERENCES question(id)
 );
 
+CREATE TABLE language (
+    id int,
+    language VARCHAR(25),
+    PRIMARY KEY(id)
+);
+
 INSERT INTO interview_tool.dbo.candidate(id, lastname, firstname, email, role, active) VALUES (1,'John', 'Doe','john@doe.com','j',1);
+INSERT INTO interview_tool.dbo.language(id, language) VALUES (1, 'Java EE'), (2, 'Elixir'), (3, 'C++'), (4, 'C#'), (5, 'Dart & Flutter'), (6, 'Python'), (7, 'JavaScript'), (8, 'Assembly');
