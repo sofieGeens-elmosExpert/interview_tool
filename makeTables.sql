@@ -11,7 +11,7 @@ CREATE TABLE candidate (
     firstname VARCHAR(20),
     email VARCHAR(40),
     role char,
-    active BIT(1),
+    active BIT,
     PRIMARY KEY(id)
 );
 
@@ -22,7 +22,7 @@ CREATE TABLE person (
     email VARCHAR(40),
     password VARCHAR(50),
     role char,
-    active BIT(1),
+    active BIT,
     PRIMARY KEY(id)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE question (
     answer_type char,
     role char,
     question VARCHAR(255),
-    active BIT(1),
+    active BIT,
     PRIMARY KEY(id)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE example_answer (
     id int,
     question_id int,
     answer VARCHAR(255),
-    active BIT(1),
+    active BIT,
     PRIMARY KEY(id),
     CONSTRAINT fk_question_answer FOREIGN KEY (question_id) REFERENCES question(id)
 );
