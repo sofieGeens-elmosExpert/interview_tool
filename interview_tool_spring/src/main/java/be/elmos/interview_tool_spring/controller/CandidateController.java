@@ -44,7 +44,7 @@ public class CandidateController {
 
     //soft delete
     @GetMapping("/delete/{id}")
-    public String deleteCandidate(@PathVariable(value = "id") int id, Model model){
+    public String deleteCandidate(@PathVariable(value = "id") int id){
         Candidate candidate = candidateRepository.findById(id);
         candidate.setActive(false);
         candidateRepository.save(candidate);
@@ -82,7 +82,7 @@ public class CandidateController {
     }
 
     @PostMapping("/add")
-    public String addCandidate(@PathVariable(value = "id") long id, UpdateCandidateDto candidate, BindingResult result, Model model){
+    public String addCandidate(UpdateCandidateDto candidate, BindingResult result, Model model){
         if(result.hasErrors()){
             model.addAttribute("exists","");
             return "new-candidate";
@@ -93,6 +93,7 @@ public class CandidateController {
         }
         Candidate cand = convertToUpdateEntity(candidate);
         candidateRepository.save(cand);
+        //todo: redirect to dashboard when user is recruiter, redirect to candidates (overview page) when user is manager or admin
         return "redirect:/candidates";
     }
 
@@ -108,6 +109,7 @@ public class CandidateController {
     public UpdateCandidateDto convertToUpdateDTO(Candidate candidate){
         return new UpdateCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),candidate.getRole());
     }
+
     public Candidate convertToUpdateEntity(UpdateCandidateDto dto, long id){
         PersonType role;
         switch (dto.getRole()){

@@ -1,9 +1,12 @@
+USE interview_tool;
+
 DROP TABLE IF EXISTS interview_has_questions;
 DROP TABLE IF EXISTS interview;
 DROP TABLE IF EXISTS example_answer;
 DROP TABLE IF EXISTS question;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS candidate;
+DROP TABLE IF EXISTS language;
 
 CREATE TABLE candidate (
     id int,
@@ -26,15 +29,23 @@ CREATE TABLE person (
     PRIMARY KEY(id)
 );
 
+CREATE TABLE language (
+    id int,
+    lang VARCHAR(25),
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE question (
     id int,
+    language_id int,
     category char,
     question_type char,
     answer_type char,
     role char,
     question VARCHAR(255),
     active BIT,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    CONSTRAINT fk_question_language FOREIGN KEY (language_id) REFERENCES language(id),
 );
 
 CREATE TABLE example_answer (
@@ -68,3 +79,4 @@ CREATE TABLE interview_has_questions (
 );
 
 INSERT INTO interview_tool.dbo.candidate(id, lastname, firstname, email, role, active) VALUES (1,'John', 'Doe','john@doe.com','j',1);
+INSERT INTO interview_tool.dbo.language(id, lang) VALUES (1, 'Java EE'), (2, 'Elixir'), (3, 'C++'), (4, 'C#'), (5, 'Dart & Flutter'), (6, 'Python'), (7, 'JavaScript'), (8, 'Assembly');

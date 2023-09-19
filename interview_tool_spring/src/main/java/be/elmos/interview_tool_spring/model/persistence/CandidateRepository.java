@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
-    List<Candidate> findAll();
-
     Candidate findById(long id);
 
     List<Candidate> findByActive(boolean bool);

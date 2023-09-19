@@ -1,6 +1,7 @@
 package be.elmos.interview_tool_spring.model.enums;
 
 public enum Category {
+    //Is the question asked in the first interview or in a technical assessment
     RECRUITING('r'), TECHNICAL('t');
 
     private char name;

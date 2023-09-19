@@ -7,8 +7,13 @@
 <body>
 <main>
     <div class="content">
-        <form>
-            <label>Choose a candidate</label>
+        <form th:action="@{/interview/start-interview}" th:object="${candidate}" method="post" class = "form">
+            <label for="dropDownList">Choose a candidate</label>
+            <select class="form-control" id="dropDownList">
+                <option value="0">select interviewee</option>
+                <option th:each="candidate : ${candidates}" th:value="${candidate}" th:text="|${candidate.getFirstName()} ${candidate.getLastName()}|"></option>
+            </select>
+            <input type="submit" class="btn" id="submit" value="Start intertview">
         </form>
     </div>
 </main>

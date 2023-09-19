@@ -12,18 +12,10 @@ public abstract class CandidateDto {
     }
 
     public CandidateDto(String ln, String fn, String mail, PersonType r) {
-        lastname = ln;
-        firstname = fn;
-        email = mail;
-        if (r == PersonType.JUNIOR) {
-            role = "junior";
-        } else if (r == PersonType.MEDIOR) {
-            role = "medior";
-        } else if (r == PersonType.SENIOR) {
-            role = "senior";
-        } else {
-            role = "unknown";
-        }
+        setLastname(ln);
+        setFirstname(fn);
+        setEmail(mail);
+        setRole(r);
     }
 
     public String getLastname() {
@@ -54,7 +46,12 @@ public abstract class CandidateDto {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(PersonType r) {
+        switch (r) {
+            case SENIOR -> role = "senior";
+            case MEDIOR -> role = "medior";
+            case JUNIOR -> role = "junior";
+            default -> role = "not specified";
+        }
     }
 }

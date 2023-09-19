@@ -11,11 +11,7 @@ public class SelectQuestionDto extends QuestionDto{
     public SelectQuestionDto() {
     }
 
-    public SelectQuestionDto(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question) {
-        super(role, category, questionType, answerType, question);
-    }
-
-    public SelectQuestionDto(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question, long id) {
+    public SelectQuestionDto( long id, PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question) {
         super(role, category, questionType, answerType, question);
         this.id = id;
     }

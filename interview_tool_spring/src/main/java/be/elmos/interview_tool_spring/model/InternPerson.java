@@ -1,13 +1,17 @@
 package be.elmos.interview_tool_spring.model;
 
 import be.elmos.interview_tool_spring.model.enums.PersonType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "person")
-public class InternPerson extends Person {
+public class InternPerson extends Person implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "password")
     private String password;
@@ -16,15 +20,28 @@ public class InternPerson extends Person {
         return password;
     }
 
-    public void setPassword(String pw){
-        password=pw;
+    public void setPassword(String password){
+        this.password = password;
     }
 
-    public InternPerson(String lastName, String firstName, String email, String pw, PersonType role) {
+    public InternPerson(String lastName, String firstName, String email, String password, PersonType role) {
         super(lastName, firstName, email, role);
-        password = pw;
+        this.password = password;
     }
 
-    public InternPerson(){}
+    public InternPerson() {
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int compareTo(Object person) {
+        return (int) (this.getId()- ((InternPerson)person).getId());
+    }
 }

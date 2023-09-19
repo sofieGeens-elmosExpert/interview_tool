@@ -7,8 +7,9 @@ public class SelectAnswerDto extends AnswerDto {
     public SelectAnswerDto() {
     }
 
-    public SelectAnswerDto(String answer) {
+    public SelectAnswerDto(long id, String answer) {
         super(answer);
+        this.id = id;
     }
 
     public long getId() {

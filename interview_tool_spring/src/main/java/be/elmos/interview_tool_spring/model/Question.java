@@ -6,27 +6,30 @@ import be.elmos.interview_tool_spring.model.enums.PersonType;
 import be.elmos.interview_tool_spring.model.enums.QuestionType;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "question")
-public class Question {
-
+public class Question implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    long id;
+    private long id;
     @Column(name = "role")
-    PersonType role;
+    private PersonType role;
     @Column(name = "category")
-    Category category;
+    private Category category;
     @Column(name = "question_type")
-    QuestionType questionType;
+    private QuestionType questionType;
     @Column(name = "answer_type")
-    AnswerType answerType;
+    private AnswerType answerType;
     @Column(name = "question")
-    String question;
+    private String question;
     @Column(name = "active")
-    Boolean isActive;
+    //private Boolean isActive; // changed to avoid 'query findByActive failed in QuestionRepo -> could not find attribute (active)
+    private Boolean active;
 
     public Question() {
+        this.active = true;
     }
 
     public Question(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question) {
@@ -35,7 +38,7 @@ public class Question {
         this.questionType = questionType;
         this.answerType = answerType;
         this.question = question;
-        this.isActive = true;
+        this.active = true;
     }
 
     public long getId() {
@@ -54,12 +57,29 @@ public class Question {
         this.role = role;
     }
 
+    public void setRole(String role){
+        switch (role) {
+            case "junior" -> this.role = PersonType.JUNIOR;
+            case "medior" -> this.role = PersonType.MEDIOR;
+            case "senior" -> this.role = PersonType.SENIOR;
+            default -> this.role = PersonType.EMPTY;
+        }
+    }
+
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void setCategory(String category){
+        switch (category) {
+            case "recruiting" -> this.category = Category.RECRUITING;
+            case "technical" -> this.category = Category.TECHNICAL;
+            default -> this.category = Category.RECRUITING;
+        }
     }
 
     public QuestionType getQuestionType() {
@@ -70,12 +90,30 @@ public class Question {
         this.questionType = questionType;
     }
 
+    public void setQuestionType(String questionType){
+        switch (questionType) {
+            case "start" -> this.questionType = QuestionType.START;
+            case "middle" -> this.questionType = QuestionType.MIDDLE;
+            case "end" -> this.questionType = QuestionType.END;
+            default -> this.questionType = QuestionType.MIDDLE;
+        }
+    }
+
     public AnswerType getAnswerType() {
         return answerType;
     }
 
     public void setAnswerType(AnswerType answerType) {
         this.answerType = answerType;
+    }
+
+    public void setAnswerType(String answerType){
+        switch (answerType) {
+            case "true/false" -> this.answerType = AnswerType.BOOL;
+            case "rating" -> this.answerType = AnswerType.SCALE;
+            case "open" -> this.answerType = AnswerType.OPEN;
+            default -> this.answerType = AnswerType.SCALE;
+        }
     }
 
     public String getQuestion() {
@@ -87,10 +125,10 @@ public class Question {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 }

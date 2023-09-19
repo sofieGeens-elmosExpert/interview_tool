@@ -10,11 +10,9 @@ public class PersonFactory {
             case SENIOR:
                 return new Candidate(lastName, firstName, email, type);
             case RECRUITER:
-                return new Recruiter(lastName, firstName, email, password, type);
             case MANAGER:
-                return new Manager(lastName, firstName, email, password, type);
             case ADMIN:
-                return new Admin(lastName, firstName, email, password, type);
+                return new InternPerson(lastName, firstName, email, password, type);
             default:
                 return null;
         }

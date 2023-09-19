@@ -1,7 +1,5 @@
 package be.elmos.interview_tool_spring.dto;
 
-import be.elmos.interview_tool_spring.model.Question;
-import jakarta.persistence.*;
 
 public class AnswerDto {
     String answer;

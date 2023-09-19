@@ -7,21 +7,15 @@
 <body>
 <main>
   <table class="table">
-    <thead>
-    <tr>
-      <th>Question</th>
-      <th>Question type</th>
-    </tr>
-    </thead>
     <tbody>
-    <tr th:each="question : ${questions}">
-      <td th:text="${question.getQuestion()}"></td>
-      <td th:text="${question.getQuestionType()}"></td>
-      <td><a th:href="@{/questions/edit/{id}(id=${question.getId()})}" class="btn">Edit</a></td>
-      <td><a th:href="@{/questions/delete/{id}(id=${question.getId()})}" class="btn">Delete</a></td>
-    </tr>
+      <tr th:each="question : ${questions}">
+        <td class="question" th:text="${question.getQuestion()}"></td>
+        <td><a th:href="@{/questions/edit/{id}(id=${question.getId()})}" class="btn">Details</a></td>
+        <td><a th:href="@{/questions/delete/{id}(id=${question.getId()})}" class="btn">Delete</a></td>
+      </tr>
     </tbody>
   </table>
+  <a th:href="@{/questions/new}" class="btn">New</a>
 </main>
 </body>
 </html>

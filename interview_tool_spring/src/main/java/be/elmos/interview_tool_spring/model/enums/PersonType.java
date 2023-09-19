@@ -1,7 +1,10 @@
 package be.elmos.interview_tool_spring.model.enums;
 
 public enum PersonType {
-    JUNIOR('j'), MEDIOR('c'), SENIOR('s'), RECRUITER('r'), MANAGER('m'), ADMIN('a');
+    //empty is used as a role for a question if a question should be asked to everyone
+    //junior, senior, medior and empty are used to ask the correct questions to the correct candidates
+    //recruiter, manager, admin are used to define access to certain pages and functionalities
+    JUNIOR('j'), MEDIOR('c'), SENIOR('s'), RECRUITER('r'), MANAGER('m'), ADMIN('a'), EMPTY('e');
 
     private char name;
 

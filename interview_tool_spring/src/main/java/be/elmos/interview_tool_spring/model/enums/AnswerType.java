@@ -1,6 +1,7 @@
 package be.elmos.interview_tool_spring.model.enums;
 
 public enum AnswerType {
+    //used to know how a recruiter can answer to a question, needed to display correct front-end
     BOOL('b'), SCALE('s'), OPEN('o');
 
     private char name;

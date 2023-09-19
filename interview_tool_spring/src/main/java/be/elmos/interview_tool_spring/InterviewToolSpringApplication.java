@@ -1,6 +1,6 @@
 package be.elmos.interview_tool_spring;
 
-import be.elmos.interview_tool_spring.model.Manager;
+import be.elmos.interview_tool_spring.model.InternPerson;
 import be.elmos.interview_tool_spring.model.Person;
 import be.elmos.interview_tool_spring.model.enums.PersonType;
 import be.elmos.interview_tool_spring.model.persistence.PersonRepository;
@@ -30,12 +30,13 @@ public class InterviewToolSpringApplication {
 			System.out.println("\n" + sql + "\n");
 			persons.forEach(System.out :: println);
 			*/
+			System.out.println("\n\nHELLO WORLD \n\n");
 			generatePerson(personRepository);
 		};
 	}
 
 	private static void generatePerson(PersonRepository personRepository) {
-		personRepository.save(new Manager("Jack", "Paesen", "jack.paesen@gmail.com", "JP123", PersonType.MANAGER));
+		personRepository.save(new InternPerson("Jack", "Paesen", "jack.paesen@gmail.com", "JP123", PersonType.MANAGER));
 
 		for (Person person: personRepository.findAll()) {
 			System.out.println(person.toString());

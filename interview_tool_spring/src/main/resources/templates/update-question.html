@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Question details</title>
+    </head>
+    <body>
+        <main>
+            <form th:action="@{/candidates/update/{id}(id=${question.id})}" th:object="${question}" method="post" id="question-info" class="form" novalidate>
+                <div class="form-group">
+                    <label class="label">Who should this question be asked to?</label>
+                    <input type="radio" id="junior" th:field="*{role}" th:value="junior" checked>
+                    <label for="junior">Junior</label>
+                    <input type="radio" id="medior" th:field="*{role}" th:value="medior">
+                    <label for="medior">Medior</label>
+                    <input type="radio" id="senior" th:field="*{role}" th:value="senior">
+                    <label for="senior">Senior</label>
+                    <input type="radio" id="everyone" th:field="*{role}" th:value="">
+                    <label for="everyone">Everyone</label>
+                </div>
+                <div class="form-group">
+                    <label class="label">Who should ask this question</label>
+                    <input type="radio" id="recruiter" th:field="*{category}" th:value="recruiting" checked>
+                    <label for="recruiter">Recruiter</label>
+                    <input type="radio" id="technical" th:field="*{category}" th:value="technical">
+                    <label for="technical">Technical assessor</label>
+                </div>
+                <div class="form-group">
+                    <label class="label">When should the question be asked and is it required</label>
+                    <input type="radio" id="start" th:field="*{questionType}" th:value="start" checked>
+                    <label for="start">At the start (required question)</label>
+                    <input type="radio" id="middle" th:field="*{questionType}" th:value="middle">
+                    <label for="middle">In the middle (non required question)</label>
+                    <input type="radio" id="end" th:field="*{questionType}" th:value="end">
+                    <label for="end">Technical assessor</label>
+                </div>
+                <div class="form-group">
+                    <label for="question" class="label">Question</label>
+                    <input type="text" th:field="*{question}" id="question" placeholder="What can you tel me about...?" maxlength="255" required>
+                </div>
+                <div class="anwers" th:object="${answers}">
+                    <table>
+                        <tr th:each="answer: ${answers}">
+                            <td><input type="text" th:field="${answer.answer}"></td>
+                            <td><a th:href="@{/answers/delete/{id}(id=${answer.getId()})}" class="btn">Delete</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class = "allerts"></div>
+                <input type="submit" class="btn" id="submit" value="Save">
+            </form>
+        </main>
+    </body>
 </html>

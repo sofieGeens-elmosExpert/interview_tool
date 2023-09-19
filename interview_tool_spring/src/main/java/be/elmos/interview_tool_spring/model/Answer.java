@@ -2,25 +2,28 @@ package be.elmos.interview_tool_spring.model;
 
 import jakarta.persistence.*;
 
-public class Answer {
+import java.io.Serializable;
+
+@Entity
+@Table(name = "example_answer")
+public class Answer implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "question_id")
-    Question question;
-    @Column(name = "answer")
-    String answer;
-    @Column(name = "active")
-    Boolean isActive;
+    @JoinColumn(name = "question.id") // juist??
+    private Question question;
+    private String answer;
+    private Boolean isActive;
 
     public Answer() {
     }
 
-    public Answer(Question questionId, String answer, Boolean isActive) {
+    public Answer(Question questionId, String answer) {
         this.question = questionId;
         this.answer = answer;
-        this.isActive = isActive;
+        this.isActive = true;
     }
 
     public long getId() {

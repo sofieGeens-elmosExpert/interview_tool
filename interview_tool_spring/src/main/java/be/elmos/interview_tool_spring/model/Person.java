@@ -3,14 +3,15 @@ package be.elmos.interview_tool_spring.model;
 
 import be.elmos.interview_tool_spring.model.enums.PersonType;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
+
 
 @MappedSuperclass
 public abstract class Person implements Comparable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+//    @GeneratedValue(strategy=GenerationType.IDENTITY) // id hoeft niet, is wel oke als overgeërfd door InterPerson en Candidate
+    private Long personId;
+
     @Column(name = "lastname")
     private String lastName;
     @Column(name = "firstname")
@@ -27,17 +28,20 @@ public abstract class Person implements Comparable {
         setFirstName(firstName);
         setEmail(email);
         setRole(role);
+        this.active = true;
     }
 
-    public Person(){}
-
-    public Long getId() {
-        return id;
+    public Person() {
+        this.active = true;
     }
 
-    public void setId(Long ID) {
-        this.id = ID;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getLastName() {
         return lastName;
@@ -82,11 +86,8 @@ public abstract class Person implements Comparable {
 
     @Override
     public String toString() {
-        return String.format("Person[id=%d, firstName='%s', lastName='%s', email='%s', role='%s']", id, firstName, lastName, email, role);
+        return String.format("Person[firstName='%s', lastName='%s', email='%s', role='%s']", firstName, lastName, email, role);
     }
 
-    @Override
-    public int compareTo(Object person) {
-        return (int) (this.getId()- ((Person)person).getId());
-    }
+
 }

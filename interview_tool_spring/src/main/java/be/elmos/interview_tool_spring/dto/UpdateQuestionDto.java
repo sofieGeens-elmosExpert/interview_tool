@@ -9,7 +9,7 @@ public class UpdateQuestionDto extends QuestionDto {
     public UpdateQuestionDto() {
     }
 
-    public UpdateQuestionDto(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question, Boolean isActive) {
+    public UpdateQuestionDto(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question) {
         super(role, category, questionType, answerType, question);
     }
 }

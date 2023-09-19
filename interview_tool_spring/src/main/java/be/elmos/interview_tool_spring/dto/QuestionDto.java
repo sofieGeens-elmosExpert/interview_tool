@@ -7,10 +7,10 @@ import be.elmos.interview_tool_spring.model.enums.QuestionType;
 
 
 public abstract class QuestionDto {
-    PersonType role;
-    Category category;
-    QuestionType questionType;
-    AnswerType answerType;
+    String role;
+    String category;
+    String questionType;
+    String answerType;
     String question;
     Boolean isActive;
 
@@ -18,44 +18,63 @@ public abstract class QuestionDto {
     }
 
     public QuestionDto(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question) {
-        this.role = role;
-        this.category = category;
-        this.questionType = questionType;
-        this.answerType = answerType;
-        this.question = question;
-        this.isActive = isActive;
+        setQuestion(question);
+        setRole(role);
+        setCategory(category);
+        setQuestionType(questionType);
+        setAnswerType(answerType);
+        setActive(true);
     }
 
-    public PersonType getRole() {
+    public String getRole() {
         return role;
     }
 
     public void setRole(PersonType role) {
-        this.role = role;
+        switch (role) {
+            case JUNIOR -> this.role = "junior";
+            case MEDIOR -> this.role = "medior";
+            case SENIOR -> this.role = "senior";
+            default -> this.role = "";
+        }
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
-        this.category = category;
+        switch (category) {
+            case RECRUITING -> this.category = "recruiting";
+            case TECHNICAL -> this.category = "technical";
+            default -> this.category = "not specified";
+        }
     }
 
-    public QuestionType getQuestionType() {
+    public String getQuestionType() {
         return questionType;
     }
 
     public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
+        switch (questionType) {
+            case START -> this.questionType = "start";
+            case MIDDLE -> this.questionType = "middle";
+            case END -> this.questionType = "end";
+            default -> this.questionType = "not specified";
+        }
     }
 
-    public AnswerType getAnswerType() {
+    public String getAnswerType() {
         return answerType;
     }
 
     public void setAnswerType(AnswerType answerType) {
-        this.answerType = answerType;
+        switch (answerType) {
+            case BOOL -> this.answerType = "true/false";
+            case SCALE -> this.answerType = "scale";
+            case OPEN -> this.answerType = "open";
+            default -> this.answerType = "not specified";
+        }
     }
 
     public String getQuestion() {
