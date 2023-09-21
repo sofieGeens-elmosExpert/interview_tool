@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Interview</title>
+<head th:insert="navbar.html :: head">
+    <title>New Interview</title>
 </head>
 <body>
+<header class="header" th:insert="navbar.html :: nav">
+    <h1 class="h1 text-center">New Interview</h1>
+</header>
 <main>
     <div class="content">
         <form th:action="@{/interview/start-interview}" th:object="${candidate}" method="post" class = "form">
             <label for="dropDownList">Choose a candidate</label>
-            <select class="form-control" id="dropDownList">
+            <select class="form-control drop" id="dropDownList">
                 <option value="0">select interviewee</option>
-                <option th:each="candidate : ${candidates}" th:value="${candidate}" th:text="|${candidate.getFirstName()} ${candidate.getLastName()}|"></option>
+                <option class="dropitem" th:each="candidate : ${candidates}" th:value="${candidate}" th:text="|${candidate.getFirstName()} ${candidate.getLastName()}|"></option>
             </select>
-            <input type="submit" class="btn" id="submit" value="Start intertview">
+            <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Start interview">
         </form>
     </div>
 </main>
+<footer class="text-center"></footer>
 </body>
 </html>

@@ -8,11 +8,11 @@ public class PersonFactory {
             case JUNIOR:
             case MEDIOR:
             case SENIOR:
-                return new Candidate(lastName, firstName, email, type);
+                return new Candidate(lastName, firstName, email, String.valueOf(type.getName()));
             case RECRUITER:
             case MANAGER:
             case ADMIN:
-                return new InternPerson(lastName, firstName, email, password, type);
+                return new InternPerson(lastName, firstName, email, password, String.valueOf(type.getName()));
             default:
                 return null;
         }

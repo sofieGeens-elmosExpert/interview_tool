@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Questions overview</title>
+<head th:insert="navbar.html :: head">
+  <title>Questions</title>
 </head>
 <body>
+<header class="header" th:insert="navbar.html :: nav">
+<!--  <header class="header">-->
+<!--  <div class="navbar sticky-top" th:insert="navbar.html :: nav"></div>-->
+  <!--  <div><p>test</p></div>-->
+  <!--  <nav class="navbar sticky-top" th:insert="navbar.html :: nav"></nav>-->
+  <h1 class="h1 text-center">Questions</h1>
+</header>
 <main>
+  <h1 class="h1 text-center">Questions</h1>
   <table class="table">
     <tbody>
       <tr th:each="question : ${questions}">
         <td class="question" th:text="${question.getQuestion()}"></td>
-        <td><a th:href="@{/questions/edit/{id}(id=${question.getId()})}" class="btn">Details</a></td>
-        <td><a th:href="@{/questions/delete/{id}(id=${question.getId()})}" class="btn">Delete</a></td>
+        <td><a th:href="@{/questions/edit/{id}(id=${question.getId()})}" class="btn btn-primary btn-sm">Details</a></td>
+        <td><a th:href="@{/questions/delete/{id}(id=${question.getId()})}" class="btn btn-primary btn-sm">Delete</a></td>
       </tr>
     </tbody>
   </table>
-  <a th:href="@{/questions/new}" class="btn">New</a>
+  <a th:href="@{/questions/new}" class="btn btn-primary btn-lg">New</a>
 </main>
+<footer class="text-center"></footer>
 </body>
 </html>

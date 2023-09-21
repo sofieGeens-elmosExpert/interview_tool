@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>new candidate</title>
+<head th:insert="navbar.html :: head">
+    <title>Add candidate</title>
 </head>
 <body>
+<header class="header" th:insert="navbar.html :: nav">
+    <h1 class="h1 text-center">New Candidate</h1>
+</header>
 <main>
     <form th:action="@{/candidates/add}" th:object="${candidate}" method="post" class = "form" novalidate>
         <div class="form-group">
@@ -19,22 +21,23 @@
             <label for="email" class="label">E-mail</label>
             <input type="text" th:field="*{email}" class="email" id="email" placeholder="E-mail" maxlength="40" required>
         </div>
-        <div class="form-group">
-            <label class="label">Role</label>
-            <input type="radio" id="junior" th:field="*{role}" th:value="junior" checked>
-            <label for="junior">Junior</label><br>
-            <input type="radio" id="medior" th:field="*{role}" th:value="medior">
-            <label for="medior">Medior</label><br>
-            <input type="radio" id="senior" th:field="*{role}" th:value="senior">
-            <label for="senior">Senior</label>
-        </div>
-        <div class = "allerts">
+
+        <p>Role</p>
+            <input class="btn-check" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior" checked>
+            <label class="btn" for="junior">Junior</label><br>
+            <input class="btn-check" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="medior">
+            <label class="btn" for="medior">Medior</label><br>
+            <input class="btn-check" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="senior">
+            <label class="btn" for="senior">Senior</label>
+
+        <div class = "alerts">
             <!--either empty or tells that user already exists -->
-            <p>${exists}</p>
+            <p th:text="${exists}"></p>
         </div>
-        <input type="submit" class="btn" id="submit" value="Start">
+        <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Start">
     </form>
 </main>
-<script src="../javascript/validate-forms.js"></script>
+<footer class="text-center"></footer>
+<script type="text/javascript" src="/javascript/validate-forms.js"></script>
 </body>
 </html>

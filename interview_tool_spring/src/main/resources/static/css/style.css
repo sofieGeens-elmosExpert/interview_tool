@@ -1,0 +1,86 @@
+/*css reset*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+#root, #__next {
+    isolation: isolate;
+}
+/*==============================*/
+
+.header {
+    display: block;
+    /*box-shadow: 0 5px 25px red;*/
+    margin: 30px;
+}
+
+.navbar{
+    background-color: white;
+}
+
+/* construction bob */
+.content {
+    width: 50%;
+    margin: 50px auto;
+}
+
+.content .h1 {
+    margin: 2rem;
+    text-align: center;
+}
+
+.h1{
+    padding: 25px;
+}
+
+.role {
+    text-transform: lowercase;
+}
+
+.role::after{
+    text-transform: capitalize;
+}
+
+.listing {
+    background: blue;
+    border-radius: 30px;
+    /*padding-bottom: 30px;*/
+    max-width: 100%;  /*max-content;*/
+    /*width: 50%;*/
+    /*margin: 0 auto;*/
+}
+.listing-heading {
+    color: green;
+    padding: 10px 20px 0 20px;
+}
+.photo {
+    /*height: 250px;*/
+    width: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+
+/*==============================*/
+

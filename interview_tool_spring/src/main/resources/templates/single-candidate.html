@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Candidate Info</title>
+<head th:insert="navbar.html :: head">
+    <title>Candidate Details</title>
 </head>
 <body>
+<header class="header" th:insert="navbar.html :: nav">
+        <h1 class="h1 text-center">Candidate Details</h1>
+    </header>
     <main class = "content">
         <div class="info-group">
             <label>First name</label>
@@ -23,5 +25,6 @@
             <span th:text="${candidate.getRole()}"></span>
         </div>
     </main>
+    <footer class="text-center"></footer>
 </body>
 </html>

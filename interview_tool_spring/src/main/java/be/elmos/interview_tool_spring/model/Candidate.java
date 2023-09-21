@@ -9,25 +9,25 @@ import java.io.Serializable;
 @Table(name = "candidate")
 public class Candidate extends Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy=GenerationType.IDENTITY)
+//    private Long id;
 
     public Candidate() {
         super();
     }
 
-    public Candidate(String firstName, String lastName, String email, PersonType role) {
+    public Candidate(String firstName, String lastName, String email, String role) {
         super(firstName, lastName, email, role);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     @Override
     public int compareTo(Object person) {

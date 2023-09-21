@@ -11,7 +11,7 @@ public abstract class CandidateDto {
     public CandidateDto() {
     }
 
-    public CandidateDto(String ln, String fn, String mail, PersonType r) {
+    public CandidateDto(String ln, String fn, String mail, String r) {
         setLastname(ln);
         setFirstname(fn);
         setEmail(mail);
@@ -46,12 +46,7 @@ public abstract class CandidateDto {
         return role;
     }
 
-    public void setRole(PersonType r) {
-        switch (r) {
-            case SENIOR -> role = "senior";
-            case MEDIOR -> role = "medior";
-            case JUNIOR -> role = "junior";
-            default -> role = "not specified";
-        }
+    public void setRole(String r) {
+        this.role = r;
     }
 }

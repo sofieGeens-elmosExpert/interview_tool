@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Table(name = "question")
 public class Question implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue//(strategy=GenerationType.IDENTITY)
     private long id;
     @Column(name = "role")
     private PersonType role;
@@ -24,6 +24,9 @@ public class Question implements Serializable {
     private AnswerType answerType;
     @Column(name = "question")
     private String question;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "language.id")
+    private Language language;
     @Column(name = "active")
     //private Boolean isActive; // changed to avoid 'query findByActive failed in QuestionRepo -> could not find attribute (active)
     private Boolean active;
@@ -32,12 +35,13 @@ public class Question implements Serializable {
         this.active = true;
     }
 
-    public Question(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question) {
+    public Question(PersonType role, Category category, QuestionType questionType, AnswerType answerType, String question, Language language) {
         this.role = role;
         this.category = category;
         this.questionType = questionType;
         this.answerType = answerType;
         this.question = question;
+        this.language = language;
         this.active = true;
     }
 
@@ -57,7 +61,7 @@ public class Question implements Serializable {
         this.role = role;
     }
 
-    public void setRole(String role){
+    public void setRole(String role) {
         switch (role) {
             case "junior" -> this.role = PersonType.JUNIOR;
             case "medior" -> this.role = PersonType.MEDIOR;
@@ -74,7 +78,7 @@ public class Question implements Serializable {
         this.category = category;
     }
 
-    public void setCategory(String category){
+    public void setCategory(String category) {
         switch (category) {
             case "recruiting" -> this.category = Category.RECRUITING;
             case "technical" -> this.category = Category.TECHNICAL;
@@ -124,11 +128,33 @@ public class Question implements Serializable {
         this.question = question;
     }
 
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
     public Boolean getActive() {
         return active;
     }
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", role=" + role +
+                ", category=" + category +
+                ", questionType=" + questionType +
+                ", answerType=" + answerType +
+                ", question='" + question + '\'' +
+                ", language=" + language +
+                ", active=" + active +
+                '}';
     }
 }

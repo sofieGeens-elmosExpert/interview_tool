@@ -9,9 +9,9 @@ import java.io.Serializable;
 @Table(name = "person")
 public class InternPerson extends Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy=GenerationType.IDENTITY)
+//    private Long id;
 
     @Column(name = "password")
     private String password;
@@ -24,21 +24,21 @@ public class InternPerson extends Person implements Serializable {
         this.password = password;
     }
 
-    public InternPerson(String lastName, String firstName, String email, String password, PersonType role) {
+    public InternPerson() {
+    }
+
+    public InternPerson(String lastName, String firstName, String email, String password, String role) {
         super(lastName, firstName, email, role);
         this.password = password;
     }
 
-    public InternPerson() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     @Override
     public int compareTo(Object person) {

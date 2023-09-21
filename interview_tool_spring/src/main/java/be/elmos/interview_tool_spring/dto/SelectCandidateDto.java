@@ -10,7 +10,7 @@ public class SelectCandidateDto extends CandidateDto {
         super();
     }
 
-    public SelectCandidateDto(String ln, String fn, String mail,long id, PersonType r){
+    public SelectCandidateDto(String ln, String fn, String mail,long id, String r){
         super(ln,fn,mail,r);
         this.id = id;
     }

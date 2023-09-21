@@ -12,7 +12,7 @@ public class Answer implements Serializable {
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "question.id") // juist??
+    @JoinColumn(name = "question.id")
     private Question question;
     private String answer;
     private Boolean isActive;

@@ -27,8 +27,10 @@ public class CandidateController {
     @GetMapping
     public String getAllCandidates(Model model) {
         //Only get active Candidates (soft delete)
-        Iterable<Candidate> candidates = candidateRepository.findByActive(true);
+        Iterable<Candidate> candidates = candidateRepository.findAllByActive(true);
         List<SelectCandidateDto> candidateDtos = new ArrayList<>();
+        System.out.println("\nCANDIDATES\n");
+        candidates.forEach(p -> System.out.println(p));
         candidates.forEach(p -> candidateDtos.add(convertToSelectDTO(p)));
         model.addAttribute("candidates", candidates);
         return "candidates";
@@ -54,17 +56,22 @@ public class CandidateController {
 
     //redirects to a page where information can be changed
     @GetMapping("/edit/{id}")
-    public String editCandidate(@PathVariable(value = "id") int id, Model model){
+    public String editCandidate(@PathVariable(value = "id") int id, Model model) {
         Candidate candidate = candidateRepository.findById(id);
         UpdateCandidateDto dto = convertToUpdateDTO(candidate);
         model.addAttribute("cand",dto);
+        model.addAttribute("id", id);
+//        model.addAttribute("junior", candidate.getRole() == PersonType.JUNIOR);
+//        model.addAttribute("medior", candidate.getRole() == PersonType.MEDIOR);
+//        model.addAttribute("senior", candidate.getRole() == PersonType.SENIOR);
+        model.addAttribute("role", candidate.getRole());
 
         return "update-candidate";
     }
 
     //updates the information and redirects to overview page
     @PostMapping("/update/{id}")
-    public String updateCandidate(@PathVariable(value = "id") long id, UpdateCandidateDto candidate, BindingResult result, Model model){
+    public String updateCandidate(@PathVariable(value = "id") long id, UpdateCandidateDto candidate, BindingResult result) {
         if(result.hasErrors()){
             return "update-candidate";
         }
@@ -83,14 +90,15 @@ public class CandidateController {
 
     @PostMapping("/add")
     public String addCandidate(UpdateCandidateDto candidate, BindingResult result, Model model){
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             model.addAttribute("exists","");
             return "new-candidate";
         }
-        if(exists(candidate)){
+        if (exists(candidate)) {
             model.addAttribute("exists","A candidate with this e-mail already exists");
             return "new-candidate";
         }
+        System.out.println("\nCREATE CANDIDATE\n" + candidate.toString());
         Candidate cand = convertToUpdateEntity(candidate);
         candidateRepository.save(cand);
         //todo: redirect to dashboard when user is recruiter, redirect to candidates (overview page) when user is manager or admin
@@ -103,50 +111,46 @@ public class CandidateController {
     }
 
     public SelectCandidateDto convertToSelectDTO(Candidate candidate) {
-        return new SelectCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),candidate.getId(),candidate.getRole());
+//        String role = setRole(candidate.getRole());
+        return new SelectCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),candidate.getId(),String.valueOf(candidate.getRole().getName()));
     }
 
-    public UpdateCandidateDto convertToUpdateDTO(Candidate candidate){
-        return new UpdateCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),candidate.getRole());
+    public UpdateCandidateDto convertToUpdateDTO(Candidate candidate) {
+//        String role = setRole(candidate.getRole());
+        return new UpdateCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),String.valueOf(candidate.getRole().getName()));
     }
 
-    public Candidate convertToUpdateEntity(UpdateCandidateDto dto, long id){
-        PersonType role;
-        switch (dto.getRole()){
-            case "junior":
-                role = PersonType.JUNIOR;
-                break;
-            case "medior":
-                role = PersonType.MEDIOR;
-                break;
-            case "senior":
-                role = PersonType.SENIOR;
-                break;
-            default:
-                role = PersonType.JUNIOR;
-        }
-        Candidate candidate = new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),role);
+    public Candidate convertToUpdateEntity(UpdateCandidateDto dto, long id) {
+        PersonType role = switch (dto.getRole()) {
+            case "junior" -> PersonType.JUNIOR;
+            case "medior" -> PersonType.MEDIOR;
+            case "senior" -> PersonType.SENIOR;
+            default -> PersonType.JUNIOR;
+        };
+        Candidate candidate = new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),String.valueOf(role.getName()));
         candidate.setId(id);
         return candidate;
     }
 
     public Candidate convertToUpdateEntity(UpdateCandidateDto dto){
-        PersonType role;
-        switch (dto.getRole()){
-            case "junior":
-                role = PersonType.JUNIOR;
-                break;
-            case "medior":
-                role = PersonType.MEDIOR;
-                break;
-            case "senior":
-                role = PersonType.SENIOR;
-                break;
-            default:
-                role = PersonType.JUNIOR;
+        PersonType role = switch (dto.getRole()) {
+            case "junior" -> PersonType.JUNIOR;
+            case "medior" -> PersonType.MEDIOR;
+            case "senior" -> PersonType.SENIOR;
+            default -> PersonType.JUNIOR;
+        };
+        return new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),String.valueOf(role.getName()));
+    }
+
+    public String setRole(String r) {
+        String  par = "";
+        switch (r) {
+            case "s" -> par = "senior";
+            case "m" -> par = "medior";
+            case "j" -> par = "junior";
+            default -> par = "not specified";
         }
-        Candidate candidate = new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),role);
-        return candidate;
+        return par;
     }
 }
 

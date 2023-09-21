@@ -8,7 +8,7 @@ import java.util.List;
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     Candidate findById(long id);
 
-    List<Candidate> findByActive(boolean bool);
+    List<Candidate> findAllByActive(boolean bool);
 
     Candidate findByEmail(String email);
 }
