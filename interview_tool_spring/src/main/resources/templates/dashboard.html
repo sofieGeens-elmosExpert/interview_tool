@@ -5,24 +5,21 @@
 </head>
 <body>
 <header class="header">
-    <div>
-        <nav class="navbar sticky-top">
-            <a th:href="@{/interview/start}" class="btn btn-primary btn-lg">Start new interview</a>
-            <a th:href="@{/candidates}" class="btn btn-primary btn-lg">Manage candidates</a>
-            <a th:href="@{/questions}" class="btn btn-primary btn-lg">Manage questions and answers</a>
-            <a th:href="@{/log-out}" class="btn btn-primary btn-lg"> <span class="glyphicon glyphicon-log-out"></span> Log out</a>
-        </nav>
-    </div>
+    <nav class="navbar fixed-top bg-body-tertiary">
+        <a th:href="@{/interview/start}" class="btn btn-primary btn-lg">Start new interview</a>
+        <a th:href="@{/candidates}" class="btn btn-primary btn-lg">Manage candidates</a>
+        <a th:href="@{/questions}" class="btn btn-primary btn-lg">Manage questions and answers</a>
+        <a th:href="@{/log-out}" class="btn btn-primary btn-lg"> <i class="bi bi-box-arrow-right"></i> Log out</a>
+    </nav>
+</header>
+<main class="main">
     <div class="content">
         <h1 class="h1">Page under construction</h1>
         <section class="listing">
             <img src="/images/bob.png" alt="Bob the builder" class="photo">
         </section>
     </div>
-</header>
-    <main>
-
-    </main>
-    <footer class="text-center"></footer>
+</main>
+<footer class="text-center"></footer>
 </body>
 </html>

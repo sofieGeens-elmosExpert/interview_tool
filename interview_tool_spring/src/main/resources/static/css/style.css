@@ -32,11 +32,19 @@ p, h1, h2, h3, h4, h5, h6 {
 .header {
     display: block;
     /*box-shadow: 0 5px 25px red;*/
-    margin: 30px;
+    margin: 0 0 50px 0;
 }
 
 .navbar{
-    background-color: white;
+    padding: 20px;
+}
+
+.main{
+    margin: 70px 20px;
+}
+
+.btn{
+    margin: 10px;
 }
 
 /* construction bob */

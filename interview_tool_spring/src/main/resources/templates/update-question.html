@@ -5,9 +5,9 @@
 </head>
 <body>
 <header class="header" th:insert="navbar.html :: nav">
-    <h1 class="h1 text-center">Update Question</h1>
 </header>
-    <main>
+    <main class="main">
+        <h1 class="h1 text-center">Update Question</h1>
         <form th:action="@{/candidates/update/{id}(id=${id})}" th:object="${q}" method="post" id="question-info" class="form" novalidate>
             <p>Who should this question be asked to?</p>
                 <input class="btn-check" type="radio" id="junior" autocomplete="off" th:field="*{role}" value="junior" th:checked="${q.getRole()} == 'junior'">
@@ -45,10 +45,11 @@
                     </tr>
                 </table>
             </div>
-            <div class = "alerts"></div>
+            <div class="alerts"></div>
             <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Save">
         </form>
     </main>
     <footer class="text-center"></footer>
+    <script src="/javascript/validate-forms.js"></script>
 </body>
 </html>

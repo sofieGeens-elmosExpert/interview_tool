@@ -4,11 +4,9 @@
     <title>Add question</title>
 </head>
 <body>
-<header class="header">
-    <div class="navbar sticky-top" th:insert="navbar.html"></div>
+<header class="header" th:insert="navbar.html :: nav"></header>
+<main class="main">
     <h1 class="h1 text-center">New Question</h1>
-</header>
-<main>
     <form th:action="@{/questions/add}" th:object="${question}" method="post" class = "form" novalidate>
         <p>Who should this question be asked to?</p>
             <input class="btn-check" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior" checked>

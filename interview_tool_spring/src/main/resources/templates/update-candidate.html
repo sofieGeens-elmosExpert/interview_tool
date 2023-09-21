@@ -4,10 +4,9 @@
   <title>Update candidate</title>
 </head>
 <body>
-<header class="header" th:insert="navbar.html :: nav">
-  <h1 class="h1 text-center">Update Candidate</h1>
-</header>
-  <main>
+<header class="header" th:insert="navbar.html :: nav"></header>
+  <main class="main">
+    <h1 class="h1 text-center">Update Candidate</h1>
     <form th:action="@{/candidates/update/{id}(id=${id})}" th:object="${cand}" method="post" class="form" novalidate>
       <div class="form-group">
         <label for="first-name" class="col-form-label">First name</label>
@@ -22,22 +21,35 @@
         <input type="text" th:field="*{email}" class="email" id="email" th:value="${cand.getEmail()}" maxlength="40" required>
       </div>
       <p th:text="${cand.getRole()}"></p><!-- todo weg -->
+      <p th:text="${cand.getRole().contains('s')}"></p><!-- todo dees ook -->
       <p th:text="${cand.getRole().equals('j')}"></p><!-- todo dees ook -->
 
       <p>Role</p>
-        <input class="btn-check" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior" th:checked="${role == 'j' ? true : false}">
-        <label class="btn" for="junior">Junior</label><br>
-        <input class="btn-check" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="medior" th:checked="${cand.getRole() == 'c'}">
-        <label class="btn" for="medior">Medior</label><br>
-        <input class="btn-check" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="senior" th:checked="${cand.getRole() == 's'}">
-        <label class="btn" for="senior">Senior</label>
+<!--      <th:block th:if="${cand.getRole().equals('j')}">-->
+<!--        <input class="btn-check role" type="radio" id="juniorrr" th:field="*{role}" th:value="j" >-->
+<!--        <label class="btn" for="junior">Junior</label><br>-->
+<!--        <input class="btn-check role" type="radio" id="juniorrr" value="junior" th:checked="true">-->
+<!--        <label class="btn" for="junior">Junior</label><br>-->
+<!--        <input class="btn-check role" type="radio" id="juniorrr" value="junior" th:checked="">-->
 
-      <div class = "alerts"></div>
+<!--      </th:block>-->
+<!--      <th:block th:if="${!cand.getRole().equals('j')}">-->
+<!--        <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior">-->
+<!--      </th:block>-->
+
+      <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="j">
+      <label class="btn" for="junior">Junior</label><br>
+      <input class="btn-check role" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="c">
+      <label class="btn" for="medior">Medior</label><br>
+      <input class="btn-check role" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="s">
+      <label class="btn" for="senior">Senior</label>
+
+      <div class="alerts"></div>
       <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Save">
     </form>
   </main>
   <footer class="text-center"></footer>
-  <script src="../javascript/validate-forms.js"></script>
+  <script src="/javascript/validate-forms.js"></script>
 </body>
 </html>
 

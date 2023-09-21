@@ -72,10 +72,14 @@ public class CandidateController {
     //updates the information and redirects to overview page
     @PostMapping("/update/{id}")
     public String updateCandidate(@PathVariable(value = "id") long id, UpdateCandidateDto candidate, BindingResult result) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "update-candidate";
         }
+        System.out.println("UPDATE CANDIDATE " + candidate.toString()); //TODO wegdoen
+        System.out.println("UPDATE CANDIDATE " + candidate.getRole()); //TODO wegdoen
         Candidate cand = convertToUpdateEntity(candidate, id);
+        System.out.println("UPDATE CANDIDATE " + cand.toString()); //TODO wegdoen
+        System.out.println("UPDATE CANDIDATE " + cand.getRole()); //TODO wegdoen
         candidateRepository.save(cand);
         return "redirect:/candidates";
     }

@@ -2,7 +2,7 @@
     "use strict"
 
     let errorList = [];
-    const alerts = document.getElementById("alerts")
+    const alerts = document.getElementsByClassName("alerts")[0];
 
     function checkRequiredFields() {
         const requiredFields = document.querySelectorAll("[required]");
@@ -14,14 +14,33 @@
     }
 
     function checkEmail() {
+        // todo wrm loop? Je verwacht meerdere emails??
         const emailFields = document.getElementsByClassName("email");
         for (let i = emailFields.length - 1; i >= 0; i--) {
             if (isFieldEmpty(emailFields[i])) {
                 continue;
             }
             if (!isEmail(emailFields[i])) {
-                errorList.push("please fill in a valid email in field" + emailFields[i].name)
+                errorList.push("please fill in a valid email")
             }
+        }
+    }
+
+    function checkRole() {
+        let radios = document.getElementsByClassName("role");
+        // verify if radio is checked
+        let found_check = false;
+        // verify page has radios
+        if (radios.length > 0) {
+            // verify every radio button
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    found_check = true;
+                    break;
+                }
+            }
+            // show error if no checked
+            if (!found_check) errorList.push("please check one role");
         }
     }
 
@@ -48,6 +67,7 @@
         errorList = [];
         checkRequiredFields();
         checkEmail();
+        checkRole();
         if (errorList.length > 0) {
             alerts.innerHTML = showAlerts();
             alerts.classList.remove("is-hidden");

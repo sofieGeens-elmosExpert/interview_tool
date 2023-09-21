@@ -49,4 +49,10 @@ public abstract class CandidateDto {
     public void setRole(String r) {
         this.role = r;
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("Person[firstName='%s', lastName='%s', email='%s', role='%s']", firstname, lastname, email, role);
+    }
 }

@@ -4,10 +4,9 @@
     <title>Candidate Details</title>
 </head>
 <body>
-<header class="header" th:insert="navbar.html :: nav">
+<header class="header" th:insert="navbar.html :: nav">    </header>
+    <main class = "main">
         <h1 class="h1 text-center">Candidate Details</h1>
-    </header>
-    <main class = "content">
         <div class="info-group">
             <label>First name</label>
             <span th:text="${candidate.getFirstname()}"></span>

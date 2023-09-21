@@ -4,10 +4,9 @@
     <title>Add candidate</title>
 </head>
 <body>
-<header class="header" th:insert="navbar.html :: nav">
+<header class="header" th:insert="navbar.html :: nav"></header>
+<main class="main">
     <h1 class="h1 text-center">New Candidate</h1>
-</header>
-<main>
     <form th:action="@{/candidates/add}" th:object="${candidate}" method="post" class = "form" novalidate>
         <div class="form-group">
             <label for="first-name" class="label">First name</label>
@@ -22,15 +21,15 @@
             <input type="text" th:field="*{email}" class="email" id="email" placeholder="E-mail" maxlength="40" required>
         </div>
 
-        <p>Role</p>
-            <input class="btn-check" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior" checked>
+        <p>Role</p><!-- TODO question: wrm autocomplete off? -->
+            <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior" checked>
             <label class="btn" for="junior">Junior</label><br>
-            <input class="btn-check" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="medior">
+            <input class="btn-check role" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="medior">
             <label class="btn" for="medior">Medior</label><br>
-            <input class="btn-check" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="senior">
+            <input class="btn-check role" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="senior">
             <label class="btn" for="senior">Senior</label>
 
-        <div class = "alerts">
+        <div class="alerts">
             <!--either empty or tells that user already exists -->
             <p th:text="${exists}"></p>
         </div>
