@@ -126,9 +126,8 @@ public class CandidateController {
 
     public Candidate convertToUpdateEntity(UpdateCandidateDto dto, long id) {
         PersonType role = switch (dto.getRole()) {
-            case "junior" -> PersonType.JUNIOR;
-            case "medior" -> PersonType.MEDIOR;
-            case "senior" -> PersonType.SENIOR;
+            case "c" -> PersonType.MEDIOR;
+            case "s" -> PersonType.SENIOR;
             default -> PersonType.JUNIOR;
         };
         Candidate candidate = new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),String.valueOf(role.getName()));
@@ -136,11 +135,10 @@ public class CandidateController {
         return candidate;
     }
 
-    public Candidate convertToUpdateEntity(UpdateCandidateDto dto){
+    public Candidate convertToUpdateEntity(UpdateCandidateDto dto) {
         PersonType role = switch (dto.getRole()) {
-            case "junior" -> PersonType.JUNIOR;
-            case "medior" -> PersonType.MEDIOR;
-            case "senior" -> PersonType.SENIOR;
+            case "c" -> PersonType.MEDIOR;
+            case "s" -> PersonType.SENIOR;
             default -> PersonType.JUNIOR;
         };
         return new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),String.valueOf(role.getName()));
