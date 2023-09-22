@@ -22,6 +22,7 @@
         </div>
 
         <p>Role</p><!-- TODO question: wrm autocomplete off? -->
+        <!-- todo radio button moet met keyboard kunnen worden gechecked -->
             <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior" checked>
             <label class="btn" for="junior">Junior</label><br>
             <input class="btn-check role" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="medior">
@@ -33,7 +34,7 @@
             <!--either empty or tells that user already exists -->
             <p th:text="${exists}"></p>
         </div>
-        <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Start">
+        <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Save">
     </form>
 </main>
 <footer class="text-center"></footer>

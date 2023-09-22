@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html :: head">
+    <title>Update candidate</title>
+</head>
+<body>
+<header class="header" th:insert="navbar.html :: nav"></header>
+<main class="main">
+    <h1 class="h1 text-center">Update Candidate</h1>
+    <form th:action="@{/employees/update/{id}(id=${id})}" th:object="${employee}" method="post" class="form" novalidate>
+        <div class="form-group">
+            <label for="first-name" class="col-form-label">First name</label>
+            <input type="text" th:field="*{firstName}" id="first-name" th:value="${employee.getFirstName()}" maxlength="20" required>
+        </div>
+        <div class="form-group">
+            <label for="last-name" class="col-form-label">Last name</label>
+            <input type="text" th:field="*{lastName}"  id="last-name" th:value="${employee.getLastName()}" maxlength="20" required>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-form-label">E-mail</label>
+            <input type="text" th:field="*{email}" class="email" id="email" th:value="${employee.getEmail()}" maxlength="40" required>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-form-label">Password</label>
+            <input type="password" th:field="*{password}" class="password" id="password" th:value="${employee.getPassword()}" maxlength="50" required>
+        </div>
+        <p>Role</p>
+            <input class="btn-check role" type="radio" id="recruiter" autocomplete="off" th:field="*{role}" th:value="r">
+            <label class="btn" for="recruiter">Recruiter</label><br>
+            <input class="btn-check role" type="radio" id="manager" autocomplete="off" th:field="*{role}" th:value="m">
+            <label class="btn" for="manager">Competence Manager</label><br>
+
+        <div class="alerts"></div>
+        <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Save">
+    </form>
+</main>
+<footer class="text-center"></footer>
+<script src="/javascript/validate-forms.js"></script>
+</body>
+</html>

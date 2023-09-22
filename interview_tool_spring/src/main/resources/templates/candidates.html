@@ -20,8 +20,8 @@
             </thead>
             <tbody>
                 <tr th:each="candidate : ${candidates}">
-                    <td th:text="${candidate.getFirstName()}"></td>
-                    <td th:text="${candidate.getLastName()}"></td>
+                    <td th:text="${candidate.getFirstname()}"></td>
+                    <td th:text="${candidate.getLastname()}"></td>
                     <td th:text="${candidate.getEmail()}"></td>
                     <td class="role" th:text="${candidate.getRole()}"></td>
                     <td><a th:href="@{/candidates/edit/{id}(id=${candidate.getId()})}" class="btn btn-primary btn-sm">Edit</a></td>

@@ -20,29 +20,13 @@
         <label for="email" class="col-form-label">E-mail</label>
         <input type="text" th:field="*{email}" class="email" id="email" th:value="${cand.getEmail()}" maxlength="40" required>
       </div>
-      <p th:text="${cand.getRole()}"></p><!-- todo weg -->
-      <p th:text="${cand.getRole().contains('s')}"></p><!-- todo dees ook -->
-      <p th:text="${cand.getRole().equals('j')}"></p><!-- todo dees ook -->
-
       <p>Role</p>
-<!--      <th:block th:if="${cand.getRole().equals('j')}">-->
-<!--        <input class="btn-check role" type="radio" id="juniorrr" th:field="*{role}" th:value="j" >-->
-<!--        <label class="btn" for="junior">Junior</label><br>-->
-<!--        <input class="btn-check role" type="radio" id="juniorrr" value="junior" th:checked="true">-->
-<!--        <label class="btn" for="junior">Junior</label><br>-->
-<!--        <input class="btn-check role" type="radio" id="juniorrr" value="junior" th:checked="">-->
-
-<!--      </th:block>-->
-<!--      <th:block th:if="${!cand.getRole().equals('j')}">-->
-<!--        <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior">-->
-<!--      </th:block>-->
-
-      <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="j">
-      <label class="btn" for="junior">Junior</label><br>
-      <input class="btn-check role" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="c">
-      <label class="btn" for="medior">Medior</label><br>
-      <input class="btn-check role" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="s">
-      <label class="btn" for="senior">Senior</label>
+        <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="junior">
+        <label class="btn" for="junior">Junior</label><br>
+        <input class="btn-check role" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="medior">
+        <label class="btn" for="medior">Medior</label><br>
+        <input class="btn-check role" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="senior">
+        <label class="btn" for="senior">Senior</label>
 
       <div class="alerts"></div>
       <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Save">
@@ -52,5 +36,3 @@
   <script src="/javascript/validate-forms.js"></script>
 </body>
 </html>
-
-<!--th:checked="${cand.getRole().equals('c')-->

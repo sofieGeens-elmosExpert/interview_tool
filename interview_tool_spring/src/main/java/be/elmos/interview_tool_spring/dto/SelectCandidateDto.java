@@ -22,4 +22,5 @@ public class SelectCandidateDto extends CandidateDto {
     public void setId(long id) {
         this.id = id;
     }
+
 }

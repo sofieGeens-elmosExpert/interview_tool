@@ -32,7 +32,7 @@ public class CandidateController {
         System.out.println("\nCANDIDATES\n");
         candidates.forEach(p -> System.out.println(p));
         candidates.forEach(p -> candidateDtos.add(convertToSelectDTO(p)));
-        model.addAttribute("candidates", candidates);
+        model.addAttribute("candidates", candidateDtos);
         return "candidates";
     }
 
@@ -75,17 +75,13 @@ public class CandidateController {
         if (result.hasErrors()) {
             return "update-candidate";
         }
-        System.out.println("UPDATE CANDIDATE " + candidate.toString()); //TODO wegdoen
-        System.out.println("UPDATE CANDIDATE " + candidate.getRole()); //TODO wegdoen
         Candidate cand = convertToUpdateEntity(candidate, id);
-        System.out.println("UPDATE CANDIDATE " + cand.toString()); //TODO wegdoen
-        System.out.println("UPDATE CANDIDATE " + cand.getRole()); //TODO wegdoen
         candidateRepository.save(cand);
         return "redirect:/candidates";
     }
 
     @GetMapping("/new")
-    public String newCandidate(Model model){
+    public String newCandidate(Model model) {
         UpdateCandidateDto dto = new UpdateCandidateDto();
         model.addAttribute("candidate",dto);
         model.addAttribute("exists","");
@@ -93,41 +89,40 @@ public class CandidateController {
     }
 
     @PostMapping("/add")
-    public String addCandidate(UpdateCandidateDto candidate, BindingResult result, Model model){
+    public String addCandidate(UpdateCandidateDto candidate, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("exists","");
+            model.addAttribute("exists",""); // todo show errors ?
             return "new-candidate";
         }
         if (exists(candidate)) {
             model.addAttribute("exists","A candidate with this e-mail already exists");
             return "new-candidate";
         }
-        System.out.println("\nCREATE CANDIDATE\n" + candidate.toString());
         Candidate cand = convertToUpdateEntity(candidate);
         candidateRepository.save(cand);
         //todo: redirect to dashboard when user is recruiter, redirect to candidates (overview page) when user is manager or admin
         return "redirect:/candidates";
     }
 
-    public Boolean exists(UpdateCandidateDto dto){
+    public Boolean exists(UpdateCandidateDto dto) {
         Candidate candidate = convertToUpdateEntity(dto);
         return candidateRepository.findByEmail(candidate.getEmail()) != null;
     }
 
     public SelectCandidateDto convertToSelectDTO(Candidate candidate) {
-//        String role = setRole(candidate.getRole());
-        return new SelectCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),candidate.getId(),String.valueOf(candidate.getRole().getName()));
+        String role = setRole(candidate.getRole());
+        return new SelectCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),candidate.getId(),role);
     }
 
     public UpdateCandidateDto convertToUpdateDTO(Candidate candidate) {
-//        String role = setRole(candidate.getRole());
-        return new UpdateCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),String.valueOf(candidate.getRole().getName()));
+        String role = setRole(candidate.getRole());
+        return new UpdateCandidateDto(candidate.getLastName(),candidate.getFirstName(),candidate.getEmail(),role);
     }
 
     public Candidate convertToUpdateEntity(UpdateCandidateDto dto, long id) {
         PersonType role = switch (dto.getRole()) {
-            case "c" -> PersonType.MEDIOR;
-            case "s" -> PersonType.SENIOR;
+            case "medior" -> PersonType.MEDIOR;
+            case "senior" -> PersonType.SENIOR;
             default -> PersonType.JUNIOR;
         };
         Candidate candidate = new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),String.valueOf(role.getName()));
@@ -137,21 +132,22 @@ public class CandidateController {
 
     public Candidate convertToUpdateEntity(UpdateCandidateDto dto) {
         PersonType role = switch (dto.getRole()) {
-            case "c" -> PersonType.MEDIOR;
-            case "s" -> PersonType.SENIOR;
+            case "medior" -> PersonType.MEDIOR;
+            case "senior" -> PersonType.SENIOR;
             default -> PersonType.JUNIOR;
         };
         return new Candidate(dto.getFirstname(),dto.getLastname(),dto.getEmail(),String.valueOf(role.getName()));
     }
 
-    public String setRole(String r) {
+    public String setRole(PersonType r) {
         String  par = "";
         switch (r) {
-            case "s" -> par = "senior";
-            case "m" -> par = "medior";
-            case "j" -> par = "junior";
+            case SENIOR -> par = "senior";
+            case MEDIOR -> par = "medior";
+            case JUNIOR -> par = "junior";
             default -> par = "not specified";
         }
+        System.out.println("role in dto:"+par);
         return par;
     }
 }
