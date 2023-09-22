@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <label for="password_conf" class="col-form-label">Confirm Password</label>
-      <input type="password" th:field="*{password}" class="password" id="password_conf" placeholder="Password" maxlength="50" required>
+      <input type="password" class="password" id="password_conf" placeholder="Confirm Password" maxlength="50">
     </div>
     <p>Role</p>
       <input class="btn-check role" type="radio" id="recruiter" autocomplete="off" th:field="*{role}" th:value="r">
@@ -35,6 +35,7 @@
       <label class="btn" for="manager">Competence Manager</label><br>
 
     <div class="alerts"></div>
+    <div class="alerts" th:text="${exists}"></div>
     <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Save">
   </form>
 </main>

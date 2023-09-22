@@ -66,6 +66,15 @@ p, h1, h2, h3, h4, h5, h6 {
     text-transform: capitalize;
 }
 
+.alerts{
+    color: red;
+}
+
+.highlight{
+    border-color: red;
+    box-shadow: red 0 0 3px 1px;
+}
+
 .listing {
     background: blue;
     border-radius: 30px;

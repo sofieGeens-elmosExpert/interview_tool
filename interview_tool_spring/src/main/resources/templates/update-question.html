@@ -26,12 +26,20 @@
                 <label class="btn" for="technical">Technical assessor</label>
 
             <p>When should the question be asked and is it required</p>
-                <input class="btn-check" type="radio" id="start" autocomplete="off" th:field="*{questionType}" th:value="s'">
+                <input class="btn-check" type="radio" id="start" autocomplete="off" th:field="*{questionType}" th:value="s">
                 <label class="btn" for="start">At the start (required question)</label>
                 <input class="btn-check" type="radio" id="middle" autocomplete="off" th:field="*{questionType}" th:value="m">
                 <label class="btn" for="middle">In the middle (non required question)</label>
                 <input class="btn-check" type="radio" id="end" autocomplete="off" th:field="*{questionType}" th:value="e">
-                <label class="btn" for="end">Technical assessor</label>
+                <label class="btn" for="end">At the end (required question)</label>
+
+            <p>How would this question be rated?</p>
+        <input class="btn-check" type="radio" id="bool" autocomplete="off" th:field="*{answerType}" th:value="b">
+        <label class="btn" for="bool">correct/incorrect</label>
+        <input class="btn-check" type="radio" id="scale" autocomplete="off" th:field="*{answerType}" th:value="s">
+        <label class="btn" for="scale">In the middle (non required question)</label>
+        <input class="btn-check" type="radio" id="open" autocomplete="off" th:field="*{answerType}" th:value="o">
+        <label class="btn" for="open">Technical assessor</label>
 
             <div>
                 <label for="question" class="label">Question</label>

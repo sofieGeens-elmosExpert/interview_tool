@@ -9,34 +9,35 @@
     <h1 class="h1 text-center">New Question</h1>
     <form th:action="@{/questions/add}" th:object="${question}" method="post" class = "form" novalidate>
         <p>Who should this question be asked to?</p>
-            <input class="btn-check" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="j" checked>
+            <input class="btn-check role" type="radio" id="junior" autocomplete="off" th:field="*{role}" th:value="j">
             <label class="btn" for="junior">Junior</label>
-            <input class="btn-check" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="c">
+            <input class="btn-check role" type="radio" id="medior" autocomplete="off" th:field="*{role}" th:value="c">
             <label class="btn" for="medior">Medior</label>
-            <input class="btn-check" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="q">
+            <input class="btn-check role" type="radio" id="senior" autocomplete="off" th:field="*{role}" th:value="q">
             <label class="btn" for="senior">Senior</label>
-            <input class="btn-check" type="radio" id="everyone" autocomplete="off" th:field="*{role}" th:value="''">
+            <input class="btn-check role" type="radio" id="everyone" autocomplete="off" th:field="*{role}" th:value="''">
             <label class="btn" for="everyone">Everyone</label>
 
         <p>Who should ask this question</p>
-            <input  class="btn-check" type="radio" id="recruiter" autocomplete="off" th:field="*{category}" th:value="r" checked>
+            <input  class="btn-check category" type="radio" id="recruiter" autocomplete="off" th:field="*{category}" th:value="r">
             <label class="btn" for="recruiter">Recruiter</label>
-            <input class="btn-check" type="radio" id="technical" autocomplete="off" th:field="*{category}" th:value="t">
+            <input class="btn-check category" type="radio" id="technical" autocomplete="off" th:field="*{category}" th:value="t">
             <label class="btn" for="technical">Technical assessor</label>
 
         <p>When should the question be asked and is it required</p>
-            <input class="btn-check" type="radio" id="start" autocomplete="off" th:field="*{questionType}" th:value="s" checked>
+            <input class="btn-check qType" type="radio" id="start" autocomplete="off" th:field="*{questionType}" th:value="s">
             <label class="btn" for="start">At the start (required question)</label>
-            <input class="btn-check" type="radio" id="middle" autocomplete="off" th:field="*{questionType}" th:value="m">
+            <input class="btn-check qType" type="radio" id="middle" autocomplete="off" th:field="*{questionType}" th:value="m">
             <label class="btn" for="middle">In the middle (non required question)</label>
-            <input class="btn-check" type="radio" id="end" autocomplete="off" th:field="*{questionType}" th:value="e">
+            <input class="btn-check qType" type="radio" id="end" autocomplete="off" th:field="*{questionType}" th:value="e">
             <label class="btn" for="end">Technical assessor</label>
-            <label for="question" class="label">Question</label>
-            <input type="text" th:field="*{question}" id="question" placeholder="What can you tel me about...?" maxlength="255" required>
-
+        <label for="question" class="label">Question</label>
+        <input type="text" th:field="*{question}" id="question" placeholder="What can you tel me about...?" maxlength="255" required>
+        <div class="alerts"></div>
         <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Save">
     </form>
 </main>
 <footer class="text-center"></footer>
+<script type="text/javascript" src="/javascript/validate-forms.js"></script>
 </body>
 </html>
